@@ -23,7 +23,7 @@ var AuthController = {
     user.save(function (err, user) {
       if (err || !user) {
         err = err || 'Error creating user';
-        return res.status(500).send(err)
+        return res.status(404).send(err)
       }
 
       var token = jwt.sign({ id: user._id }, config.secret, {
@@ -73,7 +73,7 @@ var AuthController = {
         return res.status(404).send(err);
       }
       user.save(function(err, user){
-        res.status(200).send(user)
+        res.status(200).send({success: true, message: "successfully updated user"})
       })
     })
   },
