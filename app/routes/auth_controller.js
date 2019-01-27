@@ -3,14 +3,12 @@ var bcrypt = require('bcryptjs');
 let config = require('../../config/app_config');
 let User = require('../../schema/user_schema');
 
-//console.log("models: " +JSON.stringify(models));
 
 var AuthController = {
 
   register: function(req, res){
     if(!req.body.name || !req.body.mail || !req.body.password){
       let err = "Invalid params"
-      //console.log(err);
       return res.status(404).send(err)
     }
 
@@ -27,7 +25,7 @@ var AuthController = {
         err = err || 'Error creating user';
         return res.status(500).send(err)
       }
-      // console.log("userSchema: "+user);
+
       var token = jwt.sign({ id: user._id }, config.secret, {
         expiresIn: 86400 // expires in 24 hours
       });
