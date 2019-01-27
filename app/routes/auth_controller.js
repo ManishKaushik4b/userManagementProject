@@ -124,7 +124,7 @@ var AuthController = {
         return res.status(404).send(err);
       }
 
-      res.status(200).send({message: "successfully removed user", user: user});
+      res.status(200).send({success: true, message: "successfully removed user"});
     })
   }
 };
